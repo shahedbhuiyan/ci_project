@@ -4,7 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function index() {
-		$this->load->view('login-page');
+		$this->load->model('user_model');
+		
+		if($this->user_model->is_user_logged_in()){
+			$this->load->view('dashboard_layout');
+		} else {
+			$this->load->view('login-page');
+		}
 	}
 
 	public function user_login_data_check(){
@@ -22,5 +28,13 @@ class Login extends CI_Controller {
  				$this->load->view('login-page',$data);
 			}
 		}
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('current_user_id');
+		$this->session->unset_userdata('current_user_name');	
+		$this->session->sess_destroy();
+
+		redirect("login/?logout=success");
 	}
 }

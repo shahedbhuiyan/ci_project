@@ -23,4 +23,9 @@ class User_model extends CI_model{
 			return false;
 		}
 	}
+
+	public function is_user_logged_in(){
+		return $this->session->userdata("current_user_id") != false;
+	}
+
 }
