@@ -1,0 +1,8 @@
+
+url : localhost/ci_project/abc/login/12
+
+abc - controller
+
+login - method
+
+12 - method parameter
